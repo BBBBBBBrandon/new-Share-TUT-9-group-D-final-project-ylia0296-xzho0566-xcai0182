@@ -3,7 +3,7 @@ let palette;
 let y = 0;
 
 function preload() {
-  img = loadImage('assets/');
+  img = loadImage('assets/jpg');
 }
 
 function setup() {
