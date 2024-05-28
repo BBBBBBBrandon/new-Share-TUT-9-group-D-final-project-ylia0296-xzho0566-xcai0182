@@ -1,15 +1,23 @@
+//We need a variable to hold our image
 let img;
 let palette;
 let y = 0;
+//Let's add a variable for the canvas aspect ratio
+const originalWidth = 1200;
+const originalHeight = 800;
+let aspectRatio = originalWidth / originalHeight;
 
+//let's load the image from disk
 function preload() {
   img = loadImage('assets/quay.jpg');
 }
 
 function setup() {
-  createCanvas(1200, 800);
+   //We will make the canvas the same size as the image using its properties
+  calculateCanvasSize();
   img.resize(width, height);
 
+  //we use Photoshop to find the color
   palette = [
     '#264653', '#2a9d8f',
     '#e9c46a', '#f4a261',
@@ -21,11 +29,12 @@ function setup() {
     '#d5b171', '#936c4a', 
   ];
 
-  image(img, 0, 0);
-  frameRate(30);
+  //Let's add a variable of speed
+  frameRate(25);
 }
 
 function draw() {
+  //brush effect
   for (let x = 0; x < width; x++) {
     const imgColor = img.get(x, y);
     
@@ -41,12 +50,8 @@ function draw() {
       continue;
     }
 
-    let brushSize;
-    if (x % 2 === 0) { 
-      brushSize = 3; 
-    } else {
-      brushSize = 1; 
-    }
+    //Let's add a variable of brushSize
+    let brushSize = (x % 2 === 0) ? 3 : 3;
     
     drawBlurredCircle(x, y, brushSize, paletteColor);
   }
@@ -96,4 +101,24 @@ function drawBlurredCircle(x, y, size, color) {
     let offsetY = random(-size, size);
     ellipse(x + dx + offsetX, y + dy + offsetY, size, size);
   }
+}
+
+function windowResized() {
+  calculateCanvasSize();
+  img.resize(width, height);
+  y = 0; //Restart palette effect
+  loop(); // restart the draw loop
+}
+
+function calculateCanvasSize() {
+   //Calculate the aspect ratio of the canvas
+  let canvasWidth = windowWidth;
+  let canvasHeight = windowWidth / aspectRatio;
+  //Let the canvas maintain proportions
+  if (canvasHeight > windowHeight) {
+    canvasHeight = windowHeight;
+    canvasWidth = windowHeight * aspectRatio;
+  }
+
+  createCanvas(canvasWidth, canvasHeight);
 }
