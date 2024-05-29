@@ -134,7 +134,7 @@ function getPaletteColor(imgColor) {
 
   // When drawing, it will finding the minimum distance on each pixles between the graphical paint been drew.
   // Display Minimum Distance: The minimum distance is displayed on the canvas as infinity.
-  let minDistance = 999999;
+  let minDistance = Infinity;
   // Variable explaination of the target color
   let targetColor;
   // Loop through the color
