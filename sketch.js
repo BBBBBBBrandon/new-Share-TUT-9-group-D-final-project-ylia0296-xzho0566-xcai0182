@@ -17,20 +17,23 @@ const originalWidth = 1200; // set the original width
 const originalHeight = 800; // set the original height
 let aspectRatio = originalWidth / originalHeight; //Aspect ratio of the canvas
 
+
+
+
+//CLASS
 // Brush class to hold the properties of a brush and this technique is from https://chatgpt.com/
 class Brush {
   constructor(size, color) {
     this.size = size; // Brush size
     this.color = color; // Brush color
   }
-
   draw(x, y) {
     noStroke(); // Disable stroke
     fill(this.color); // Set fill color to brush color
 
   // Calculate random position within the brush size
   let angle = random(TWO_PI); // Random angle for brush stroke
-  let length = random(this.size * 0.5, this.size * 0.5); // Random length for brush stroke
+  let length = random(this.size * 1.5, this.size * 1.5); // Random length for brush stroke
   let dx = cos(angle) * length; // X offset for brush stroke
   let dy = sin(angle) * length; // Y offset for brush stroke
   for (let i = 0; i < 5; i++) { // Draw multiple ellipses for blurred effect
@@ -41,6 +44,10 @@ class Brush {
   }
 }
 
+
+
+
+//FUNCTIONS
 //let's load the image from disk
 function preload() {
   img = loadImage('/assets/quay.jpg'); //Load the main image
