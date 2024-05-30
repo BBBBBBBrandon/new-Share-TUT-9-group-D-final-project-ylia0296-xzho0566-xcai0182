@@ -111,7 +111,7 @@ function draw() {
 
   // Draw the logo image in the center of the canvas
   let logoAspect = logoWidth / logoHeight; // Calculate logo aspect ratio
-  let scaleFactor = 0.6; // Scale factor to resize the logo image
+  let scaleFactor = 0.6; // Scale factor to resize the logo image and this technique comes from https://www.geeksforgeeks.org/scale-factor/
   // Resize the logo image based on the canvas size
   if (canvasAspectRatio > logoAspect) { // If canvas aspect ratio is greater than logo aspect ratio
     logoHeight = height * scaleFactor;; // Set logo height based on canvas height
