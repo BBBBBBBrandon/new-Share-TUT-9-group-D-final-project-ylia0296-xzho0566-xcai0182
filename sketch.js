@@ -75,11 +75,12 @@ function setup() {
     '#d5b171', '#936c4a', 
   ];
 
-  //Let's add a variable of speed
+  //Let's add a variable of speed and this technique is from https://www.geeksforgeeks.org/p5-js-framerate-function/
   frameRate(25);
 }
 
 function draw() {
+  // This technique comes from https://happycoding.io/tutorials/p5js/images/image-palette
   if (y < height) { // If y is less than canvas height
     // brush effect
     for (let x = 0; x < width; x++) { // Loop through each pixel in width
@@ -96,8 +97,8 @@ function draw() {
         console.log(`Undefined palette color for image color: ${imgColor}`); // Log undefined palette color
         continue; // Skip to the next iteration
       }
-
-      let brushSize = (x % 1 === 0) ? 2 : 1; // Set brush size
+      // Set brush size and this technique is from https://chatgpt.com/
+      let brushSize = (x % 1 === 0) ? 2 : 1;
       let brush = new Brush(brushSize, paletteColor); // Create a new brush instance
       brush.draw(x, y); // Draw using the brush
     }
@@ -110,7 +111,7 @@ function draw() {
 
   // Draw the logo image in the center of the canvas
   let logoAspect = logoWidth / logoHeight; // Calculate logo aspect ratio
-  let scaleFactor = 0.6; // Scale factor to resize the logo image
+  let scaleFactor = 0.6; // Scale factor to resize the logo image and this technique comes from https://www.geeksforgeeks.org/scale-factor/
   // Resize the logo image based on the canvas size
   if (canvasAspectRatio > logoAspect) { // If canvas aspect ratio is greater than logo aspect ratio
     logoHeight = height * scaleFactor;; // Set logo height based on canvas height
@@ -123,7 +124,7 @@ function draw() {
   image(logoImage, (width / 2) - (logoWidth / 2), (height / 2) - (logoHeight / 2), logoWidth, logoHeight);
 }
 
-// Our function to get the closest color from the palette and this technique was not covered in class but does Image Palette.
+// Our function to get the closest color from the palette and this technique comes from https://happycoding.io/tutorials/p5js/images/image-palette
 function getPaletteColor(imgColor) {
   // Image processing and pixel manipulation
   // These functions take a color value and return 
